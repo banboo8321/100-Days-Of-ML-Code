@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 
 #Step 2: Importing dataset
-dataset = pd.read_csv('../datasets/Data.csv')
+#ataset = pd.read_csv('../datasets/Data.csv')
+dataset = pd.read_csv(r'C:\D\03_code\ML\datasets\Data.csv')#../datasets/Data.csv')
 X = dataset.iloc[ : , :-1].values
 Y = dataset.iloc[ : , 3].values
 print("Step 2: Importing dataset")
@@ -15,12 +16,16 @@ print("Y")
 print(Y)
 
 #Step 3: Handling the missing data
-# If you use the newest version of sklearn, use the lines of code commented out
+# If you use the old version of sklearn, use the lines of code commented out
+# from sklearn.impute import SimpleImputer
+# imputer = SimpleImputer(missing_values=np.nan, strategy="mean")
+
 from sklearn.impute import SimpleImputer
 imputer = SimpleImputer(missing_values=np.nan, strategy="mean")
-#from sklearn.preprocessing import Imputer
-# axis=0表示按列进行
-#imputer = Imputer(missing_values = "NaN", strategy = "mean", axis = 0)
+
+# from sklearn.preprocessing import Imputer
+# # axis=0表示按列进行
+# imputer = Imputer(missing_values = "NaN", strategy = "mean", axis = 0)
 imputer = imputer.fit(X[ : , 1:3])
 X[ : , 1:3] = imputer.transform(X[ : , 1:3])
 print("---------------------")
